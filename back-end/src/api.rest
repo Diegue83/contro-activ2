@@ -8,11 +8,11 @@ GET http://localhost:3000/login/2
 GET http://localhost:3000/login/Alan/1234
 
 ### Consultando con password
-POST http://localhost:3000/login/Alan
+POST http://localhost:3000/login/Diego
 Content-Type: application/json
 
 {
-    "pwd": "1234"
+    "pwd": "Hola"
 }
 
 ### Agregando un usuario
@@ -44,12 +44,15 @@ DELETE http://localhost:3000/login/314
 GET http://localhost:3000/lugares
 
 ###Consulta de Actividades
-GET http://localhost:3000/actividades
+GET http://localhost:3000/actividades/finalizada/
 
 ###Actividades por ID
 GET http://localhost:3000/actividades/28
 
 ########actividades###########
+
+###
+GET http://localhost:3000/actividades/usuarios/4
 
 ### Instertar Actividades
 POST http://localhost:3000/actividades

@@ -100,6 +100,7 @@ div > .cancelar:hover{
     transform: translateY(-10px);
     opacity: 0;
     animation: deslizar 0.5s ease forwards;
+
 }
 .visble{
     opacity: 1;
@@ -128,6 +129,8 @@ div > .cancelar:hover{
     height: 400px;
     overflow-y: scroll;
     display: grid;
+    scroll-behavior: smooth;
+    scroll-margin-top: 200px;
 }
 .opciones{
     display: flex;
@@ -174,4 +177,17 @@ div > .cancelar:hover{
         padding: 0%;
         height: 300px;
     }
+}
+
+button{
+    margin: 5px;
+}
+table button{
+    margin: 1px;
+}
+#locSelect{
+    display: block;
+    position: fixed;
+    width: 600px;
+    height: 400px;
 }

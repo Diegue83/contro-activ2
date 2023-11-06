@@ -14,7 +14,21 @@ const database_1 = require("../database");
 class ActividadesController {
     getAct(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.pool.query('SELECT * FROM vis_act;');
+            const hoy = new Date();
+            hoy.setDate(hoy.getDate());
+            const diaStr = hoy.toISOString().slice(0, 10);
+            const result = yield database_1.pool.query('SELECT * FROM vis_act WHERE fecha >= ?;', diaStr);
+            res.json(result[0]);
+        });
+    }
+    getActEnded(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(1);
+            const hoy = new Date();
+            hoy.setDate(hoy.getDate());
+            const diaStr = hoy.toISOString().slice(0, 10);
+            console.log(0);
+            const result = yield database_1.pool.query('SELECT * FROM vis_act WHERE fecha <= ?', [diaStr]);
             res.json(result[0]);
         });
     }
@@ -22,6 +36,13 @@ class ActividadesController {
         return __awaiter(this, void 0, void 0, function* () {
             const { idAct } = req.params;
             const result = yield database_1.pool.query('SELECT * From vis_act where idAct= ?', [idAct]);
+            res.json(result[0]);
+        });
+    }
+    getByUsrAct(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { idUsr } = req.params;
+            const result = yield database_1.pool.query('SELECT * FROM vis_act where idUsr= ?', [idUsr]);
             res.json(result[0]);
         });
     }

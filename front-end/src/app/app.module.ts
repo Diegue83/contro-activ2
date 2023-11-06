@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarUsrComponent } from './components/sidebar-usr/sidebar-usr.component';
-import { SidebarLecComponent } from './components/sidebar-lec/sidebar-lec.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ActivComponent } from './components/activ/activ.component';
@@ -24,15 +23,18 @@ import { FechaEspPipe } from './pipes/fecha-esp.pipe';
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { ActivAdmComponent } from './components/activ-adm/activ-adm.component';
 import { NotifAdmComponent } from './components/notif-adm/notif-adm.component';
-import { CalAdmComponent } from './components/cal-adm/cal-adm.component';
+import { MapService } from './map.service';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { ParticipantesComponent } from './components/participantes/participantes.component';
+import { OneSignalModule } from 'ngx-onesignal';
 
-@NgModule({
+
+@NgModule({ 
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
     SidebarUsrComponent,
-    SidebarLecComponent,
     HomeComponent,
     LoginComponent,
     ActivComponent,
@@ -48,15 +50,20 @@ import { CalAdmComponent } from './components/cal-adm/cal-adm.component';
     CalendarioComponent,
     ActivAdmComponent,
     NotifAdmComponent,
-    CalAdmComponent
+    ParticipantesComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    GoogleMapsModule,
+    OneSignalModule.forRoot({
+      appId: 'TU_APP_ID'
+    })
   ],
-  providers: [],
+  providers: [MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

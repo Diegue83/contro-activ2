@@ -1,96 +1,103 @@
 <div class="row">
-    <div class="col-md-2">
-      <app-sidebar-lec></app-sidebar-lec>
-    </div>
-    <div class="col-md-10 cont">
-      <style>
-        input {
-          font-family: Arial, FontAwesome;
-        }
-      </style>
-  
-      <div class="reg">
-        <form #partform="ngForm" (submit)="agAsis(partform)">
-          <h1>Regístrate</h1>
-  
-          <div class="mb-3 mt-3">
-            <input
-              name="nomPar"
-              type="text"
-              class="form-control"
-              id="user"
-              placeholder="&#xf007;   Nombre Completo"
-              [(ngModel)]="participanteService.participante.nomPar"
-            />
-          </div>
-  
-          <div class="mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="email"
-              placeholder="Número de control"
-              name="numCon"
-              [(ngModel)]="asistenciaService.asistencia.numCon"
-            />
-          </div>
-  
-          <div class="mb-3">
-            <input
-              type="tel"
-              class="form-control"
-              id="phone"
-              placeholder="Grupo"
-              name="grupo"
-              [(ngModel)]="participanteService.participante.grupo"
-            />
-          </div>
-  
-          <div class="mb-3">
-            <select
-              class="form-select"
-              id="pwd"
-              placeholder="Carrera"
-              name="idCar"
-              [(ngModel)]="participanteService.participante.idCar"
+  <div class="col-md-2">
+    <app-sidebar-adm></app-sidebar-adm>
+  </div>
+  <div class="col-md-10 cont">
+    <style>
+      input {
+        font-family: Arial, FontAwesome;
+      }
+    </style>
+
+    <div class="reg">
+      <form #partform="ngForm" (submit)="agAsis(partform)">
+        <h1>Regístrate</h1>
+
+        <div class="mb-3 mt-3">
+          <input
+            name="nomPar"
+            type="text"
+            class="form-control"
+            id="user"
+            placeholder="&#xf007;   Nombre Completo"
+            [(ngModel)]="ParticipanteService.participante.nomPar"
+          />
+        </div>
+
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            placeholder="Número de control"
+            name="numCon"
+            [(ngModel)]="asistenciaService.asistencia.numCon"
+          />
+        </div>
+
+        <div class="mb-3">
+          <input
+            type="tel"
+            class="form-control"
+            id="phone"
+            placeholder="Grupo"
+            name="grupo"
+            [(ngModel)]="ParticipanteService.participante.grupo"
+          />
+        </div>
+
+        <div class="mb-3">
+          <select
+            class="form-select"
+            id="pwd"
+            placeholder="Carrera"
+            name="idCar"
+            [(ngModel)]="ParticipanteService.participante.idCar"
+          >
+            <option
+              *ngFor="let carrera of carreraService.carreras"
+              [value]="carrera.idCar"
             >
-              <option
-                *ngFor="let carrera of carreraService.carreras"
-                [value]="carrera.idCar"
-              >
-                {{ carrera.idCar }}. {{ carrera.nomCar }}
-              </option>
-            </select>
-          </div>
-  
-          <div class="mb-3">
-            <select
-              class="form-select"
-              placeholder="Actividad"
-              name="idAct"
-              [(ngModel)]="asistenciaService.asistencia.idAct"
+              {{ carrera.idCar }}. {{ carrera.nomCar }}
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <select
+            class="form-select"
+            placeholder="Actividad"
+            name="idAct"
+            [(ngModel)]="asistenciaService.asistencia.idAct"
+          >
+            <option
+              *ngFor="let actividad of actividadService.actividades"
+              [value]="actividad.idAct"
             >
-              <option
-                *ngFor="let actividad of actividadService.actividades"
-                [value]="actividad.idAct"
-              >
-                {{ actividad.nomAct }} {{ actividad.fecha | fechaEsp }}
-              </option>
-            </select>
-          </div>
-  
-          <button (click)="agAsis(partform); insPar(partform)" class="btn btn-secondary" routerLink="">
-            Regístrate
-          </button>
-  
-          <p>
-            Al registrarse, aceptas nuestras Condiciones de uso y Política de privacidad.
-          </p>
-          <p>
-            ¿Ya tienes cuenta? <a href="/login"><strong> Inicia Sesión</strong></a>
-          </p>
-        </form>
-      </div>
+              {{ actividad.nomAct }} {{ actividad.fecha | fechaEsp }}
+            </option>
+          </select>
+        </div>
+
+        <div id="paypal-button-container"></div>
+
+        <button
+          (click)="agAsis(partform); insPar(partform)"
+          class="btn btn-secondary"
+          routerLink=""
+        >
+          Regístrate
+        </button>
+
+        <p>
+          Al registrarse, aceptas nuestras Condiciones de uso y Política de
+          privacidad.
+        </p>
+        <p>
+          ¿Ya tienes cuenta?
+          <a href="/login"><strong> Inicia Sesión</strong></a>
+        </p>
+      </form>
     </div>
   </div>
-  
+</div>

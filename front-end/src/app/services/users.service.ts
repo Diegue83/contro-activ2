@@ -8,7 +8,7 @@ import { User } from '../models/users';
 export class UsersService {
   private URL_API='http://localhost:3000/usuarios';
   public user:User=
-  {idUsr:0,usr:'',pwd:'',rol:''}
+  {idUsr:0,usr:'',rol:''}
   users:User[]=[]
 
   constructor(private http: HttpClient) {}

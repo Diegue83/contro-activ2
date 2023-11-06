@@ -18,6 +18,12 @@ export class ActividadesService {
   getAct(){
     return this.http.get<Actividad[]>(this.URL_API)
   }
+  getByUsrAct(idUsr:Actividad){
+    return this.http.get<Actividad[]>(this.URL_API+'usuarios/'+idUsr)
+  }
+  getActEnded(){
+    return this.http.get<Actividad[]>(this.URL_API+'finalizada')
+  }
   insAct(actividades:Actividad){
     return this.http.post(this.URL_API,actividades)
   }

@@ -1,6 +1,5 @@
 import {Request,Response} from 'express';
 import {pool} from "../database";
-import { createPool } from 'mysql2/promise';
 
 class LoginnController{
     async getUsers(req:Request,res:Response){

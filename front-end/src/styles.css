@@ -1,4 +1,8 @@
 body{
+    display: block;
     padding: 5px;
     background: #0F5E87;
+    overflow-x: hidden;
+    justify-content: center;
+    scroll-behavior: smooth;
 }

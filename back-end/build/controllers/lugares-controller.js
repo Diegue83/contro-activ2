@@ -18,5 +18,17 @@ class LugaresController {
             res.json(result[0]);
         });
     }
+    insLug(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield database_1.pool.query('INSERT INTO LUGARES SET ?', [req.body]);
+            res.json({ Message: 'Se inserto correctamente' });
+        });
+    }
+    getLastLug(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield database_1.pool.query('SELECT * FROM lugares ORDER by idLug DESC LIMIT 1;');
+            res.json(result[0]);
+        });
+    }
 }
 exports.lugaresController = new LugaresController;

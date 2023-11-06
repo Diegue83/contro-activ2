@@ -1,17 +1,26 @@
+<!--Barra de navegacion lateral  debera mostrarse en todas las vistas-->
 <ul class="nav nav-pills lateral collapse" style="margin: 5px 0;">
     <li class="nav-item">
         <a class="nav-link" href="home-adm"><i class="fa-solid fa-house"></i>   Inicio</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="cal-adm"><i class="fa-solid fa-calendar-days"></i>   Calendario</a>
+        <a *ngIf="isLogged" class="nav-link" href="cal-usr"><i class="fa-solid fa-calendar-days"></i>   Calendario</a>
+        <a *ngIf="!isLogged" class="nav-link" href="cal"><i class="fa-solid fa-calendar-days"></i>   Calendario</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="activ-adm"><i class="fa-solid fa-note-sticky"></i>   Actividades</a>
+    <li *ngIf="isLogged" class="nav-item">
+        <a *ngIf="userInfo.rol=='adm'" class="nav-link" href="activ-adm"><i class="fa-solid fa-note-sticky"></i>   Actividades</a>
+        <a *ngIf="userInfo.rol=='usr'" class="nav-link" href="activ"><i class="fa-solid fa-note-sticky"></i>   Actividades</a>
     </li>
-    <li class="nav-item">
+    <li *ngIf="isLogged" class="nav-item">
         <a class="nav-link" href="notif-adm"><i class="fa-solid fa-bell"></i>   Notificaciones</a>
     </li>
-    <li class="nav-item">
+    <li *ngIf="isLogged" class="nav-item">
+        <a class="nav-link" href="participantes"><img src="../../../assets/part.svg" alt="">   Participantes</a>
+    </li>
+    <li *ngIf="isLogged" class="nav-item" (click)="logOut()">
         <a href="home" class="nav-link" style="color: rgb(255, 133, 133);"><i class="fa-solid fa-arrow-right-from-bracket"></i>   Salir</a>
+    </li>
+    <li *ngIf="!isLogged" class="nav-item">
+        <a class="nav-link" href="login"><i class="fa-solid fa-user"></i>   Iniciar Sesión</a>
     </li>
 </ul>

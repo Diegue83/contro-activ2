@@ -14,3 +14,19 @@ ul a:hover{
     background: #395e1c;
     font-size: larger;
 }
+.subBar{
+    display: none;
+    transition: 1s all;
+    background: #426E21;
+    cursor: pointer;
+}
+.subelemts{
+    padding: 2px;
+}
+.subelements:hover{
+    padding: 2px;
+    
+}
+.act:hover .subBar{
+    display: block;
+}

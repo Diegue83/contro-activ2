@@ -14,7 +14,7 @@ const database_1 = require("../database");
 class UsersController {
     getUsr(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.pool.query('SELECT * FROM usuarios');
+            const result = yield database_1.pool.query('SELECT idUsr, usr FROM usuarios');
             res.json(result[0]);
         });
     }

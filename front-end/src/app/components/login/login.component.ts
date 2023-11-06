@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-
 import { NgForm } from '@angular/forms';
-
 import { LoginService } from 'src/app/services/login.service';
-
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +11,12 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class LoginComponent{
 
-  constructor(public loginService:LoginService, private router: Router){
+  constructor(public loginService:LoginService, private router: Router, private authService: AuthService){
+    console.log(this.authService.getLogIn())
   }
   
   ngOnInit(): void{
+    console.log(this.authService.getLogIn());
   }
 
   valLog(form:NgForm){
@@ -29,6 +29,9 @@ export class LoginComponent{
           form.reset();
         }
         else{
+          this.authService.setLogIn(true);
+          this.authService.setRol(res);
+          console.log(this.authService.getLogIn())
           console.log('Sesion iniciada')
           if(res[0].rol == 'adm'){
             console.log('admin'); 
