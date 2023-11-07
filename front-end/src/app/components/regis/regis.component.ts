@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActividadesService } from 'src/app/services/actividades.service';
 import { ParticipantesService } from 'src/app/services/participantes.service';
@@ -9,13 +9,16 @@ import { Participante } from 'src/app/models/Participantes';
 import { loadScript } from '@paypal/paypal-js';
 
 
-declare let paypal: any;
+declare var paypal:any;
+
 @Component({
   selector: 'app-regis',
   templateUrl:'./regis.component.html',
   styleUrls: ['./regis.component.css']
 })
 export class RegisComponent implements OnInit {
+
+  @ViewChild('paypal',{static:true}) paypalElement! : ElementRef;
 
   participantes: Participante[]=[];
   participante={ numCon:'', nomPar:'',grupo:'',idCar:0};
@@ -30,13 +33,15 @@ export class RegisComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.procesarPago();
     this.getAct();
     this.getPar();
     this.getCar();
     this.getAsis();
     console.log(this.registros)
     console.log(this.participante)
-    //this.procesarPago()
+    
+
   }
 
   getPar() {
@@ -130,25 +135,37 @@ export class RegisComponent implements OnInit {
   }
   montoACobrar: number = 100.00; // Cambia este valor al monto que desees cobrar
 
-  // procesarPago(): void {
-  //   // Define el objeto de pago con el monto
-  //   paypal.Buttons({
-  //     createOrder(data, actions) {
-  //       return actions.order.create({
-  //         purchase_units: [{
-  //           amount: {
-  //             value: '150.00' // Nuevo precio
-  //           }
-  //         }]
-  //       });
-  //     },
-  //     onApprove(data, actions) {
-  //       return actions.order.capture().then(function(details) {
-  //         // Aquí puedes completar la orden y mostrar un mensaje de confirmación.
-  //       });
-  //     }
-  //   }).render('#paypal-button-container');
+  procesarPago(): void {
+    paypal.Buttons({
+      createOrder: (data : any, actions : any)=>{
+        return actions.order.create({
+          intent:'CAPTURE',
+          purchase_units: [
+            { 
+              amount:{
+                currency_code:'MXN',
+                value: 200
+              }
+            }
+          ],
+          application_context:{
+            brand_name:'Mi Tienda',
+            landing_page:'NO_PREFERENCE',
+            user_action: 'PAY_NOW'
+          }
+        })
+      },
+      onApprove: async (data: any, actions: any) => {
+        const order = await actions.order.capture();
+        console.log(order);
+  
+      },
+      onError: (err: any) => {
+        console.log('Error en el pago', err);
+     
+      }      
+    }).render(this.paypalElement.nativeElement);
     
-  // }
+  }
 
 }

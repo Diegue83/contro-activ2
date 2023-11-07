@@ -1,15 +1,127 @@
-GET http://localhost:3000/actividades
+### Consultando todos los usuarios
+GET http://localhost:3000/login
+
+### Consultando un usuario
+GET http://localhost:3000/login/2
+
+### Consultando usuario
+GET http://localhost:3000/login/Alan/1234
+
+### Consultando con password
+POST http://localhost:3000/login/Diego
+Content-Type: application/json
+
+{
+    "pwd": "Hola"
+}
+
+### Agregando un usuario
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    //"idUsr": 4,
+    "usr": "Pelusasasa",
+    "pwd": "123",
+    "rol": "usr"
+}
+
+### Actualizando un usuario
+PUT http://localhost:3000/login/4
+Content-Type: application/json
+
+{
+    "idUsr": 31,
+    "usr": "Pelusa 2",
+    "pwd": "456",
+    "rol": "usr"
+}
+
+### Eliminando un usuario
+DELETE http://localhost:3000/login/314
+
+###Consulta de lugares
+GET http://localhost:3000/lugares
+
+###Consulta de Actividades
+GET http://localhost:3000/actividades/finalizada/
+
+###Actividades por ID
+GET http://localhost:3000/actividades/28
+
+########actividades###########
 
 ###
+GET http://localhost:3000/actividades/usuarios/4
 
+### Instertar Actividades
 POST http://localhost:3000/actividades
 Content-Type: application/json
 
 {
-    "fecha": "2023-02-08",
-    "nomAct": "Partido de Futbol",
-    "usr":"",
-    "idUsr": 2,
-    "idLug": 1,
-    "descripcion": "Partido de seleccion"
+    "fecha": "2023-12-20",
+    "nomAct": "Pastorela",
+    "idUsr": 3,
+    "idLug": 3,
+    "descripcion": "sin descripcion"
+  }
+
+### Eliminar Actividad
+DELETE  http://localhost:3000/actividades/23
+
+### Actualizar actividad
+PUT http://localhost:3000/actividades/28
+Content-Type: application/json
+
+{
+    "idAct": 28,
+    "fecha": "2023-12-20T06:00:00.000Z",
+    "nomAct": "Pastorela",
+    "idUsr": 3,
+    "idLug": 3,
+    "descripcion": "Pastorela de fin de año"
+  }
+### Consultando participantes 
+GET http://localhost:3000/participantes
+
+###Consulta por id 
+GET http://localhost:3000/participantes/1222100413
+
+### Insertar
+POST http://localhost:3000/participantes
+Content-Type: application/json
+
+{
+    "numCon": 1222100513,
+    "nomPar": "Juan",
+    "grupo": "GMI0532",
+    "idCar": "3"
+}
+
+### Actualizar
+PUT http://localhost:3000/participantes/1222100513
+Content-Type: application/json
+
+{
+    "nomPar": "Juan",
+    "grupo": "GMI0531",
+    "idCar": "2"
+}
+
+### Eliminar
+DELETE http://localhost:3000/participantes/1222100513
+
+### Consulta asistencia
+GET http://localhost:3000/asistencia
+
+###Consulta control
+GET http://localhost:3000/asistencia/1222100413
+
+###
+PUT http://localhost:3000/asistencia
+Content-Type: application/json
+
+{
+    "numCon":"1222100413",
+    "idAct": 4,
 }

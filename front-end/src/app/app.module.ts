@@ -26,7 +26,7 @@ import { NotifAdmComponent } from './components/notif-adm/notif-adm.component';
 import { MapService } from './map.service';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { ParticipantesComponent } from './components/participantes/participantes.component';
-import { OneSignalModule } from 'ngx-onesignal';
+//import { OneSignalModule } from 'ngx-onesignal';
 
 
 @NgModule({ 
@@ -59,9 +59,9 @@ import { OneSignalModule } from 'ngx-onesignal';
     FormsModule,
     HttpClientModule,
     GoogleMapsModule,
-    OneSignalModule.forRoot({
-      appId: 'TU_APP_ID'
-    })
+    // OneSignalModule.forRoot({
+    //   appId: 'TU_APP_ID'
+    // })
   ],
   providers: [MapService],
   bootstrap: [AppComponent]
